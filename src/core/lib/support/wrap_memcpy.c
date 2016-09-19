@@ -40,6 +40,7 @@
  */
 
 #ifdef __linux__
+#ifdef __GLIBC__
 #ifdef __x86_64__
 __asm__(".symver memcpy,memcpy@GLIBC_2.2.5");
 void *__wrap_memcpy(void *destination, const void *source, size_t num) {
@@ -49,5 +50,6 @@ void *__wrap_memcpy(void *destination, const void *source, size_t num) {
 void *__wrap_memcpy(void *destination, const void *source, size_t num) {
   return memmove(destination, source, num);
 }
+#endif
 #endif
 #endif
